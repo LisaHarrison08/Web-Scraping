@@ -1,6 +1,16 @@
 from splinter import Browser
 from bs4 import BeautifulSoup
+# import necessary libraries
+from flask import Flask, render_template
 
+# create instance of Flask app
+app = Flask(__name__)
+
+
+# create route that renders index.html template
+@app.route("/")
+def echo():
+    return render_template("index.html", text="Mission to Mars server!!")
 
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
@@ -83,3 +93,7 @@ def scrape_mars_astro():
          
 
     return mars_info
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
