@@ -1,5 +1,5 @@
-from splinter import Browser
-from bs4 import BeautifulSoup
+# from splinter import Browser
+# from bs4 import BeautifulSoup
 # import necessary libraries
 from flask import Flask, render_template
 
@@ -24,7 +24,7 @@ def init_browser():
     # browser = Browser('chrome', **executable_path, headless=False)
 
 # Store return values as a Python dictionary
-mars_info{}
+# mars_info{}
 
 # NASA Mars News
 def scrape_mars_news():
@@ -74,7 +74,7 @@ def scrape_mars_facts():
     df = f_table[0] 
     df.columns = ['Mars Planet', 'Value']
     df.set_index(['Mars Planet'], inplace = True)
-    df.to_html('Mars_df.html'   
+    df.to_html('Mars_df.html')  
 
  # Mars Hemispheres
 def scrape_mars_astro():
