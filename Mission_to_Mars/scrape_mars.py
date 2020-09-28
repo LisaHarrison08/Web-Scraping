@@ -1,4 +1,6 @@
+#Dependencies
 from splinter import Browser
+from splinter.exceptions import ElementDoesNotExist
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
@@ -21,32 +23,34 @@ def scrape():
 
     browser = init_browser()
 
-    url = "https://mars.nasa.gov/news/"
-    browser.visit(url)
+    # url = "https://mars.nasa.gov/news/"
 
-    html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
+    # browser.visit(url)
 
-    # Extract the latest News Title and Paragraph 
-    news_title = soup.find('div', class_='bottom_gradient').text
-    news_p = soup.find('div', class_='article_teaser_body').text
+    # html = browser.html
+    # soup = BeautifulSoup(html, "html.parser")
+
+    # # Extract the latest News Title and Paragraph 
+    # news_title = soup.find('div', class_='bottom_gradient').text
+    # news_p = soup.find('div', class_='article_teaser_body').text
 
 
 # JPL Featured Space Image
-    browser = init_browser()
+# Use Splinter to navigate the following site and find the image
 
-    # Use Splinter to navigate the following site and find the image
     image_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+
     browser.visit(image_url)
 
     time.sleep(2)
 
-    # Retrieve background-image from style tag 
+# Retrieve background-image from style tag 
+
     browser.find_by_id('full_image').click()
 
     browser.click_link_by_partial_text('more info')
 
-    # Retrieve featured-image from style tag 
+# Retrieve featured-image from style tag 
     featured_image = browser.find_by_css('img.main_image')['src']    
 
 # NASA Mars Facts
@@ -57,18 +61,20 @@ def scrape():
     # Mars Facts Table
     f_table = pd.read_html(facts_url)
     df = f_table[0] 
-    mars_fact = df.to_html('Mars_df.html')  
+    mars_fact = df.to_html() 
 
- # Mars Hemispheres
+# Mars Hemispheres
 
     astro_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    
     browser.visit(astro_url)
 
     time.sleep(2)
 
     links = browser.find_by_css('a.product-item h3')
 
-    # Retreive all items that contain Mars hemispheres information
+# Retreive all items that contain Mars hemispheres information
+
     hemi_img_urls = []
 
     for i in range(len(links)):
@@ -80,13 +86,16 @@ def scrape():
     
         hemi_img_urls.append(hemi)
         browser.back()
+    
+    browser.quit()
 
-    # Store return values as a Python dictionary     
+    # Store return values as a Python dictionary   
+      
     mars_info = {
-            'news_title': news_title,
-            'news_p': news_p,
+            # 'news_title': news_title,
+            # 'news_p': news_p,
             'featured_image': featured_image,
-            'mars_facts': mars_fact,
+            'mars_fact': mars_fact,
             'hemi_img_urls': hemi_img_urls
         }
         
