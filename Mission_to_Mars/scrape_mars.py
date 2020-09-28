@@ -23,16 +23,16 @@ def scrape():
 
     browser = init_browser()
 
-    # url = "https://mars.nasa.gov/news/"
+#     url = "https://mars.nasa.gov/news/"
 
-    # browser.visit(url)
+#     browser.visit(url)
 
-    # html = browser.html
-    # soup = BeautifulSoup(html, "html.parser")
+#     html = browser.html
+#     soup = BeautifulSoup(html, "html.parser")
 
-    # # Extract the latest News Title and Paragraph 
-    # news_title = soup.find('div', class_='bottom_gradient').text
-    # news_p = soup.find('div', class_='article_teaser_body').text
+#     # # Extract the latest News Title and Paragraph 
+#     # # news_title = soup.find('div', class_='bottom_gradient').text
+#     # news_p = soup.find('div', class_='article_teaser_body').text
 
 
 # JPL Featured Space Image
@@ -89,7 +89,7 @@ def scrape():
     
     browser.quit()
 
-    # Store return values as a Python dictionary   
+# Store return values as a Python dictionary   
       
     mars_info = {
             # 'news_title': news_title,
