@@ -31,11 +31,8 @@ def scrape():
     soup = BeautifulSoup(html, "html.parser")
 
     # Extract the latest News Title and Paragraph 
-    # news_title = soup.find('div', class_='bottom_gradient').text
     news_title = browser.find_by_css('.grid_gallery.list_view .content_title a').text
-    # news_p = soup.find('div', class_='article_teaser_body').text
-    # news_p = soup.find('ul', class_='item_list').text
-
+    news_p = browser.find_by_css('.grid_gallery.list_view li.slide').text
 
 # JPL Featured Space Image
 # Use Splinter to navigate the following site and find the image
@@ -95,7 +92,7 @@ def scrape():
       
     mars_info = {
             'news_title': news_title,
-            # 'news_p': news_p,
+            'news_p': news_p,
             'featured_image': featured_image,
             'mars_fact': mars_fact,
             'hemi_img_urls': hemi_img_urls
